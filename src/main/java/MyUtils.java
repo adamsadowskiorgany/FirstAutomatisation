@@ -9,7 +9,7 @@ public class MyUtils {
     public static WebDriver getWebDriver(String browser) {
         switch (browser.toUpperCase()) {
             case "CHROME": {
-                System.setProperty("webdriver.chrome.driver", "src/main/resources/chromedriver.exe");
+                System.setProperty("webdriver.chrome.driver", "src/test/resources/chromedriver.exe");
                 return new ChromeDriver();
             }
             case "FIREFOX": {
