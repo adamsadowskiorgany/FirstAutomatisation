@@ -71,23 +71,26 @@ public class MyStepsMyStore {
     public void iFillOutAliasAddressCityPostalCodeCountryPhone(String alias, String address, String city, String postalCode, String country, String phone) {
         WebElement aliasInput = new WebDriverWait(webDriver, 3).until(ExpectedConditions.elementToBeClickable(By.name("alias")));
         aliasInput.sendKeys(alias);
-//        webDriver.findElement(By.name("input[name='alias']")).sendKeys(alias);
-//        WebElement addressInput = new WebDriverWait(webDriver, 3).until(ExpectedConditions.elementToBeClickable(By.name("address1")));
-//        addressInput.sendKeys(address);
-        webDriver.findElement(By.name("input[name='address1']")).sendKeys(address);
-        webDriver.findElement(By.name("input[name='city']")).sendKeys(city);
-        webDriver.findElement(By.name("input[name='postcode'']")).sendKeys(postalCode);
-        webDriver.findElement(By.xpath("//*[@id=\"field-id_country\"]")).sendKeys(country);
-        webDriver.findElement(By.name("input[name='phone']")).sendKeys(phone);}
+
+        WebElement addressInput = webDriver.findElement(By.xpath("//*[@id=\"field-address1\"]")); addressInput.sendKeys(address);
+        WebElement cityInput = webDriver.findElement(By.xpath("//*[@id=\"field-city\"]")); cityInput.sendKeys(city);
+
+        WebElement postalCodeInput = webDriver.findElement(By.xpath("//*[@id=\"field-postcode\"]")); postalCodeInput.sendKeys(postalCode);
+        WebElement countryInput = webDriver.findElement(By.xpath("//*[@id=\"field-id_country\"]")); countryInput.sendKeys(country);
+        WebElement phoneInput = webDriver.findElement(By.xpath("//*[@id=\"field-phone\"]")); phoneInput.sendKeys(phone);}
 
 
 
     @And("I submit the form")
     public void iSubmitTheForm() {
+        webDriver.findElement(By.cssSelector("button[type='submit']")).click();
     }
 
     @Then("the new address should be added successfully")
     public void theNewAddressShouldBeAddedSuccessfully() {
+        String expectedResult = "Address successfully added!";
+        String currentText =  webDriver.findElement(By.xpath("//*[@id=\"notifications\"]/div/article/ul/li")).getText();
+        Assert.assertTrue(currentText.contains(expectedResult));
     }
 
     @And("the details of the added address should be correct")
