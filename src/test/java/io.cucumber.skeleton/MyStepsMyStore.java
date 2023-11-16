@@ -30,15 +30,12 @@ public class MyStepsMyStore {
     }
     @And("I go to login page")
     public void iGoToLoginPage() {
-        WebElement element = webDriver.findElement(By.xpath("//*[contains(text(), 'Sign in')]"));
-
-        element.click();
+        webDriver.findElement(By.xpath("//*[contains(text(), 'Sign in')]")).click();
     }
 
     @When("I type {string} login")
     public void iTypeLogin(String login) {
-        WebElement element = webDriver.findElement(By.cssSelector("input[id=field-email]"));
-        element.sendKeys(login);
+        webDriver.findElement(By.cssSelector("input[id=field-email]")).sendKeys(login);
     }
 
     @And("I type {string} password")
@@ -68,21 +65,20 @@ public class MyStepsMyStore {
         webDriver.findElement(By.xpath("//*[contains(text(), 'Create new address')]")).click();
     }
 
-    @And("I fill out the New Address form with the following details:")
-    public void iFillOutTheNewAddressFormWithTheFollowingDetails() {
-    }
-//    @And("I fill out the New Address form with the following details <alias>")
-//    public void iFillOutTheNewAddressFormWithTheFollowingDetailsAlias(String alias) {
+
+
+    @And("I fill out  alias {string}, address {string}, city {string}, postal code {string}, country {string}, phone {string}")
+    public void iFillOutAliasAddressCityPostalCodeCountryPhone(String alias, String address, String city, String postalCode, String country, String phone) {
+        WebElement aliasInput = new WebDriverWait(webDriver, 3).until(ExpectedConditions.elementToBeClickable(By.name("alias")));
+        aliasInput.sendKeys(alias);
 //        webDriver.findElement(By.name("input[name='alias']")).sendKeys(alias);
-//    }
-//    @And("I fill out the New Address form with the following details")
-//    public void iFillOutTheNewAddressFormWithTheFollowingDetailsAliasAddressCityPostalCodeCountryPhone(String alias, String address, String city, String postalCode, String country, String phone) {
-//
-//        webDriver.findElement(By.name("input[name='address1']")).sendKeys(address);
-//        webDriver.findElement(By.name("input[name='city']")).sendKeys(city);
-//        webDriver.findElement(By.name("input[name='postcode'']")).sendKeys(postalCode);
-//        webDriver.findElement(By.xpath("//*[@id=\"field-id_country\"]")).sendKeys(country);
-//        webDriver.findElement(By.name("input[name='phone']")).sendKeys(phone);}
+//        WebElement addressInput = new WebDriverWait(webDriver, 3).until(ExpectedConditions.elementToBeClickable(By.name("address1")));
+//        addressInput.sendKeys(address);
+        webDriver.findElement(By.name("input[name='address1']")).sendKeys(address);
+        webDriver.findElement(By.name("input[name='city']")).sendKeys(city);
+        webDriver.findElement(By.name("input[name='postcode'']")).sendKeys(postalCode);
+        webDriver.findElement(By.xpath("//*[@id=\"field-id_country\"]")).sendKeys(country);
+        webDriver.findElement(By.name("input[name='phone']")).sendKeys(phone);}
 
 
 
