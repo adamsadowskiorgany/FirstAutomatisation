@@ -10,12 +10,19 @@ public class MyStoreTest {
 
     MyStoreLogin myStoreLogin;
 
+    MyStoreShopping myStoreShopping;
+
+
+    MyStoreSizeAndNumber myStoreSizeAndNumber;
+
     @Before
     public void openBrowser() {
         webDriver = MyUtils.getWebDriver("Chrome");
         wait = new WebDriverWait(webDriver, 3);
         webDriver.manage().window().maximize();
         myStoreLogin = new MyStoreLogin(webDriver);
+        myStoreShopping = new MyStoreShopping(webDriver);
+        myStoreSizeAndNumber = new MyStoreSizeAndNumber(webDriver);
     }
 
     @Test
@@ -25,7 +32,7 @@ public class MyStoreTest {
         myStoreLogin.iTypeLogin("noga@gmail.com");
         myStoreLogin.iTypePassword("noga1234");
         myStoreLogin.iClickLoginButton();
-
+        myStoreShopping.ISearchProduct("Hummingbird Printed Sweater");
+        myStoreSizeAndNumber.IClickProductAgain();
     }
-
 }

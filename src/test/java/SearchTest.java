@@ -16,6 +16,7 @@ public class SearchTest {
     public void openBrowser() {
         webDriver = MyUtils.getWebDriver("Chrome");
         wait = new WebDriverWait(webDriver, 3);
+        webDriver.manage().window().maximize();
         googlePage = new GooglePage(webDriver);
         musicShop = new MusicShop(webDriver);
     }
