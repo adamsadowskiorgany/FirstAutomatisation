@@ -17,6 +17,6 @@ Feature: MyStore-TestLab.CodersLab Test
 
       Examples:
         | alias          | address        | city        | postalCode | country | phone       |
-        | WorkAddress    | Happy Street   | Gdansk      | 12345      | Poland  | 123456789   |
+        | WorkAddress    | Happy Street   | London      | 12-345      | Poland  | 123456789   |
 
 
