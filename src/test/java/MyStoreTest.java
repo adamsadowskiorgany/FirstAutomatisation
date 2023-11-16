@@ -34,5 +34,6 @@ public class MyStoreTest {
         myStoreLogin.iClickLoginButton();
         myStoreShopping.ISearchProduct("Hummingbird Printed Sweater");
         myStoreSizeAndNumber.IClickProductAgain();
+        myStoreSizeAndNumber.ITypeSizeAndQuantity("L", 7);
     }
 }

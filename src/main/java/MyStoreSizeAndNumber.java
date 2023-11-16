@@ -1,4 +1,5 @@
 import org.openqa.selenium.By;
+import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
@@ -17,5 +18,10 @@ public class MyStoreSizeAndNumber {
 //
     }
 
-    public void ITypeSizeAndQuantity(String size, String quantity) {}
+    public void ITypeSizeAndQuantity(String size, int quantity) {
+        webDriver.findElement(By.xpath("//*[@id=\"group_1\"]")).sendKeys(size);
+        WebElement quantityInput = new WebDriverWait(webDriver, 3).until(ExpectedConditions.elementToBeClickable(By.xpath("//*[@id=\"quantity_wanted\"]")));
+        quantityInput.sendKeys(Keys.chord(Keys.CONTROL, "a"), Integer.toString(quantity));
+
+    }
 }
