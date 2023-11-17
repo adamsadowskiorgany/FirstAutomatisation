@@ -1,3 +1,4 @@
+import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 import org.openqa.selenium.WebDriver;
@@ -15,6 +16,8 @@ public class MyStoreTest {
 
     MyStoreSizeAndNumber myStoreSizeAndNumber;
 
+    MyStoreCheckout myStoreCheckout;
+
     @Before
     public void openBrowser() {
         webDriver = MyUtils.getWebDriver("Chrome");
@@ -23,7 +26,13 @@ public class MyStoreTest {
         myStoreLogin = new MyStoreLogin(webDriver);
         myStoreShopping = new MyStoreShopping(webDriver);
         myStoreSizeAndNumber = new MyStoreSizeAndNumber(webDriver);
+        myStoreCheckout = new MyStoreCheckout(webDriver);
     }
+
+//    @After
+//    public void closeBrowser() {
+//        webDriver.quit();
+//    }
 
     @Test
     public void OpenMyStore() {
@@ -34,6 +43,8 @@ public class MyStoreTest {
         myStoreLogin.iClickLoginButton();
         myStoreShopping.ISearchProduct("Hummingbird Printed Sweater");
         myStoreSizeAndNumber.IClickProductAgain();
-        myStoreSizeAndNumber.ITypeSizeAndQuantity("L", 7);
+        myStoreSizeAndNumber.ITypeSizeAndQuantity("L", 57);
+        myStoreSizeAndNumber.IAddToCart();
+        myStoreCheckout.IProceedToCheckout();
     }
 }
