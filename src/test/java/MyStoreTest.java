@@ -51,7 +51,7 @@ public class MyStoreTest {
         myStoreLogin.iAmLoggedIn();
         myStoreShopping.ISearchProduct("Hummingbird Printed Sweater");
         myStoreSizeAndNumber.IClickProductAgain();
-        myStoreSizeAndNumber.ITypeSizeAndQuantity("M", 7);
+        myStoreSizeAndNumber.ITypeSizeAndQuantity("XL", 37);
         myStoreSizeAndNumber.IAddToCart();
         myStoreCheckout.IProceedToCheckout();
         myStoreCheckout.IConfirmAddress();
