@@ -1,9 +1,12 @@
 
 
+import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.ui.WebDriverWait;
+
+import java.time.Duration;
 
 public class SearchTest {
     WebDriver webDriver;
@@ -19,6 +22,16 @@ public class SearchTest {
         webDriver.manage().window().maximize();
         googlePage = new GooglePage(webDriver);
         musicShop = new MusicShop(webDriver);
+    }
+
+    @After
+    public void closeBrowser() {
+        try {
+            Thread.sleep(Duration.ofSeconds(3));
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        webDriver.quit();
     }
 
     @Test

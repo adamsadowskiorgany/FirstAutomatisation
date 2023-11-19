@@ -59,6 +59,6 @@ public class MyStoreTest {
         myStoreCheckout.IClickPayByCheck();
         myStoreCheckout.iAcceptTermsOfUse();
         myStoreCheckout.iPlaceOrder();
-        myStoreCheckout.TakeScreenshot("MyStoreOrder1");
+        myStoreCheckout.TakeScreenshot("MyStoreOrder2");
     }
 }
