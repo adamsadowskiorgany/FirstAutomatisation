@@ -13,10 +13,12 @@ Feature: MyStore-TestLab.CodersLab Test
     And I fill out  alias "<alias>", address "<address>", city "<city>", postal code "<postalCode>", country "<country>", phone "<phone>"
     And I submit the form
     Then the new address should be added successfully
-    And the details of the added address should be correct
+    And the details of the added address should be correct "<screen>"
 
       Examples:
-        | alias          | address        | city        | postalCode | country | phone       |
-        | WorkAddress    | Happy Street   | London      | 12-345      | Poland  | 123456789   |
+        | alias          | address        | city        | postalCode | country | phone       | screen |
+#       | WorkAddress    | Happy Street   | London      | 12-345      | Poland  | 123456789   |address1|
+        |HomeAddress    | Happy Street   | London      | 12-345      | Poland  | 123456789   |address2|
+        | RestAddress    | Happy Street   | London      | 12-345      | Poland  | 123456789   |address3|
 
 

@@ -1,21 +1,28 @@
 package io.cucumber.skeleton;
 
+
+import io.cucumber.java.After;
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import org.junit.Assert;
-import org.openqa.selenium.By;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
+import org.openqa.selenium.*;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
+
+import java.io.File;
+import java.io.IOException;
+import java.nio.file.Paths;
+import java.nio.file.StandardCopyOption;
+import java.time.Duration;
 
 public class MyStepsMyStore {
 
     WebDriver webDriver;
     WebDriverWait wait;
+
     @Given("I open a browser")
     public void iOpenABrowser() {
         System.setProperty("webdriver.chrome.driver","src/test/resources/chromedriver.exe" );
@@ -93,8 +100,29 @@ public class MyStepsMyStore {
         Assert.assertTrue(currentText.contains(expectedResult));
     }
 
-    @And("the details of the added address should be correct")
-    public void theDetailsOfTheAddedAddressShouldBeCorrect() {
+    @And("the details of the added address should be correct {string}")
+    public void theDetailsOfTheAddedAddressShouldBeCorrect(String screen) {
+        File screenshot = ((TakesScreenshot) webDriver).getScreenshotAs(OutputType.FILE);
+
+        // Ścieżka do miejsca, gdzie zapiszę plik oraz końcowa nazwa pliku pod zmienną screen
+        String destinationPath = System.getProperty("user.dir") + "/src/main/screenshots/" + screen +".png";
+
+
+        try {
+            // Zapisywanie zrzutem ekranu do docelowej lokalizacji
+            java.nio.file.Files.copy(screenshot.toPath(), Paths.get(destinationPath), StandardCopyOption.REPLACE_EXISTING);
+        } catch (IOException e) {
+            System.out.println("Błąd podczas kopiowania pliku: " + e.getMessage());
+        }
+    }
+    @After
+    public void closeBrowser() {
+        try {
+            Thread.sleep(Duration.ofSeconds(3));
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        webDriver.quit();
     }
 
 }
